@@ -2,6 +2,7 @@ import { ConnectButton } from '@rainbow-me/rainbowkit';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
+import { Center, Flex, Box } from '@chakra-ui/react';
 
 const Home: NextPage = () => {
   return (
@@ -27,6 +28,14 @@ const Home: NextPage = () => {
           Get started by editing{' '}
           <code className={styles.code}>pages/index.tsx</code>
         </p>
+
+        <Center w={500} h={300} borderRadius='xl'
+          boxShadow="lg" background='gray.500' overflow="hidden">
+          <Flex w="100%" h="100%">
+            <Box flex={[4, 6]} backgroundColor='tomato' height="100%">Hello</Box>
+            <Box flex={8}></Box>
+          </Flex>
+        </Center>
 
         <div className={styles.grid}>
           <a href="https://rainbowkit.com" className={styles.card}>
