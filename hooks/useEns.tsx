@@ -20,6 +20,7 @@ const useEns = (_addr?: string) => {
     const twitter = await resolver.getText("com.twitter");
     const github = await resolver.getText("com.github");
     const avatarUrl = await resolver.getText("avatar");
+    const websiteUrl = await resolver.getText("url");
 
     setEnsData({
       ensName: _ensName,
@@ -27,6 +28,7 @@ const useEns = (_addr?: string) => {
       twitter,
       github,
       avatarUrl,
+      websiteUrl,
     });
   }
 
