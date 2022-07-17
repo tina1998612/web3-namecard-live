@@ -5,7 +5,7 @@ import styles from "../styles/Home.module.css";
 import { Center, Flex, Box, Input, Heading } from "@chakra-ui/react";
 import useEnsData from "../hooks/useEns";
 import Card from "../component/Card";
-import { useState } from "react";
+import { SetStateAction, useState } from "react";
 const Home: NextPage = () => {
   const [search, setSearch] = useState("");
   const { ensData } = useEnsData(undefined, search);
@@ -24,8 +24,8 @@ const Home: NextPage = () => {
       <main className={styles.main}>
         <Heading mb={5}>{search}'s Ens Namecard</Heading>
         <ConnectButton />
-        <Input my="5" onChange={(e) => setSearch(e.target.value)}></Input>
-        <pre>{JSON.stringify(ensData, null, 2)}</pre>
+        <Input my="5" onChange={(e: { target: { value: SetStateAction<string>; }; }) => setSearch(e.target.value)}></Input>
+        {/* <pre>{JSON.stringify(ensData, null, 2)}</pre> */}
         <Card cardData={ensData}></Card>
       </main>
 

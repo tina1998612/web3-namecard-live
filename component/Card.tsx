@@ -17,8 +17,8 @@ interface CardProps {
 const Card = ({ cardData }: CardProps) => {
   let [isFlipped, setIsFlipped] = useState(false);
   return <>
-    <Text>Hello</Text>
-    <Box w={300} h={500}
+    {/* <Text>Hello</Text> */}
+    <Box mt={5} w={300} h={500}
       className={classnames(styles['flip-card'])}
       onClick={() => setIsFlipped(!isFlipped)}>
 
@@ -48,8 +48,8 @@ const Card = ({ cardData }: CardProps) => {
             <Image my='5' boxSize="120px" src={cardData.avatarUrl}></Image>
             <Heading>{cardData.ensName}</Heading>
             <Text>{cardData.email}</Text>
-            <p>Architect & Engineer</p>
-            <p>We love that guy</p>
+            {/* <p>Architect & Engineer</p> */}
+            {/* <p>We love that guy</p> */}
             <VStack mt={5} textDecoration="underline" spacing="0" align="flex-start">
 
               <Link href={cardData.websiteUrl} isExternal>
