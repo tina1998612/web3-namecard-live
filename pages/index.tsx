@@ -7,9 +7,8 @@ import useEnsData from "../hooks/useEns";
 import Card from "../component/Card";
 import { useState } from "react";
 const Home: NextPage = () => {
-
   const [search, setSearch] = useState("");
-  const { ensData } = useEnsData(search);
+  const { ensData } = useEnsData(undefined, search);
 
   return (
     <div className={styles.container}>
@@ -26,12 +25,8 @@ const Home: NextPage = () => {
         <Heading mb={5}>{search}'s Ens Namecard</Heading>
         <ConnectButton />
         <Input my="5" onChange={(e) => setSearch(e.target.value)}></Input>
-        <pre>
-          {JSON.stringify(ensData, null, 2)}
-        </pre>
+        <pre>{JSON.stringify(ensData, null, 2)}</pre>
         <Card cardData={ensData}></Card>
-
-
       </main>
 
       <footer className={styles.footer}>

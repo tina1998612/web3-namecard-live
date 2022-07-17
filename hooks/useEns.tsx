@@ -3,19 +3,18 @@ import { useEffect, useState } from "react";
 
 const useEns = (_addr?: string, _ens?: string) => {
   const { address } = useAccount();
-  const [_address, setFinalAddr] = useState('');
+  const [_address, setFinalAddr] = useState("");
   const provider = useProvider();
   const [ensData, setEnsData] = useState({});
   const { data, isError, isLoading } = useEnsName({
     address: _address,
   });
   useEffect(() => {
-    setFinalAddr(_addr || address || '');
-  }, [_addr, address])
+    setFinalAddr(_addr || address || "");
+  }, [_addr, address]);
 
-  async function getAndSetEnsData(_ensName?: string) {
-
-    console.log('getAndSetEnsData', _ensName);
+  async function getAndSetEnsData(_ensName: string) {
+    console.log("getAndSetEnsData", _ensName);
 
     const resolver = await provider.getResolver(_ensName);
     if (!resolver) {
@@ -40,8 +39,8 @@ const useEns = (_addr?: string, _ens?: string) => {
 
   // console.log(_address);
   useEffect(() => {
-    if (_address && (data || _ens)) {
-      getAndSetEnsData(data || _ens);
+    if (data || _ens) {
+      getAndSetEnsData(_ens || data || "");
       console.log(ensData);
     }
   }, [_address, _ens]);
