@@ -2,11 +2,14 @@ import { ConnectButton } from "@rainbow-me/rainbowkit";
 import type { NextPage } from "next";
 import Head from "next/head";
 import styles from "../styles/Home.module.css";
-import { Center, Flex, Box } from "@chakra-ui/react";
+import { Center, Flex, Box, Input, Heading } from "@chakra-ui/react";
 import useEnsData from "../hooks/useEns";
-
+import Card from "../component/Card";
+import { useState } from "react";
 const Home: NextPage = () => {
-  const { ensData } = useEnsData();
+
+  const [search, setSearch] = useState("");
+  const { ensData } = useEnsData(search);
 
   return (
     <div className={styles.container}>
@@ -20,76 +23,15 @@ const Home: NextPage = () => {
       </Head>
 
       <main className={styles.main}>
+        <Heading mb={5}>{search}'s Ens Namecard</Heading>
         <ConnectButton />
+        <Input my="5" onChange={(e) => setSearch(e.target.value)}></Input>
+        <pre>
+          {JSON.stringify(ensData, null, 2)}
+        </pre>
+        <Card cardData={ensData}></Card>
 
-        <h1 className={styles.title}>
-          Welcome to <a href="">RainbowKit</a> + <a href="">wagmi</a> +{" "}
-          <a href="https://nextjs.org">Next.js!</a>
-        </h1>
 
-        <p className={styles.description}>
-          Get started by editing{" "}
-          <code className={styles.code}>pages/index.tsx</code>
-        </p>
-
-        <Center
-          w={500}
-          h={300}
-          borderRadius="xl"
-          boxShadow="lg"
-          background="gray.500"
-          overflow="hidden"
-        >
-          <Flex w="100%" h="100%">
-            <Box flex={[4, 6]} backgroundColor="tomato" height="100%">
-              Hello
-            </Box>
-            <Box flex={8}></Box>
-          </Flex>
-        </Center>
-
-        <div className={styles.grid}>
-          <a href="https://rainbowkit.com" className={styles.card}>
-            <h2>RainbowKit Documentation &rarr;</h2>
-            <p>Learn how to customize your wallet connection flow.</p>
-          </a>
-
-          <a href="https://wagmi.sh" className={styles.card}>
-            <h2>wagmi Documentation &rarr;</h2>
-            <p>Learn how to interact with Ethereum.</p>
-          </a>
-
-          <a
-            href="https://github.com/rainbow-me/rainbowkit/tree/main/examples"
-            className={styles.card}
-          >
-            <h2>RainbowKit Examples &rarr;</h2>
-            <p>Discover boilerplate example RainbowKit projects.</p>
-          </a>
-
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h2>Next.js Documentation &rarr;</h2>
-            <p>Find in-depth information about Next.js features and API.</p>
-          </a>
-
-          <a
-            href="https://github.com/vercel/next.js/tree/canary/examples"
-            className={styles.card}
-          >
-            <h2>Next.js Examples &rarr;</h2>
-            <p>Discover and deploy boilerplate example Next.js projects.</p>
-          </a>
-
-          <a
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=default-template&utm_campaign=create-next-app"
-            className={styles.card}
-          >
-            <h2>Deploy &rarr;</h2>
-            <p>
-              Instantly deploy your Next.js site to a public URL with Vercel.
-            </p>
-          </a>
-        </div>
       </main>
 
       <footer className={styles.footer}>
